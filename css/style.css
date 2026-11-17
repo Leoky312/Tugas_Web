@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-} 
+}
 
 .wrapper {
     width: 100%;
@@ -78,14 +78,14 @@ input[type="password"] {
     background-color: #fafafa;
 }
 
-/* input[type="text"]:focus,
+input[type="text"]:focus,
 input[type="email"]:focus,
 input[type="password"]:focus {
     border-color: #4f46e5;
     outline: none;
     background-color: #ffffff;
     box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-} */
+}
 
 .ingat-saya,
 .setuju {
