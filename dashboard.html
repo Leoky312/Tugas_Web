@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cuaca BMKG - Pemrograman Web</title>
+    <!-- Google Font Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="dashboard-navbar">
+        <div class="dashboard-navbar-inner">
+            <div class="brand">
+                <span class="brand-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><circle cx="10" cy="6" r="3" opacity=".4"/></svg></span>
+                <div>
+                    <h2>Weather Dashboard</h2>
+                    <p class="subtitle">Integrasi API Resmi BMKG (Indonesia)</p>
+                </div>
+            </div>
+            <div class="user-action">
+                <div class="user-info-badge">
+                    <span class="user-avatar" id="avatar-initial">U</span>
+                    <div class="user-text">
+                        <span class="user-name" id="profile-nama">Memuat...</span>
+                        <span class="user-email" id="profile-email">-</span>
+                    </div>
+                </div>
+                <button type="button" id="btn-logout" class="btn-logout-sm">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="wrapper dashboard-wrapper">
+        <div class="dashboard-container">
+
+            <!-- User Welcome Banner -->
+            <section class="card-section user-welcome-card" id="user-profile">
+                <div class="welcome-content">
+                    <div class="session-chip">
+                        <span class="status-indicator"></span> Sesi Aktif (Login Berhasil)
+                    </div>
+                    <h3>Halo, <span id="welcome-name">Pengguna</span>!</h3>
+                    <p>Selamat datang di dashboard. Data perkiraan cuaca berikut disinkronkan langsung secara realtime dari <strong>API Resmi BMKG</strong> untuk wilayah Anda.</p>
+                </div>
+            </section>
+
+            <!-- Weather Widget Section -->
+            <section class="card-section weather-section" id="weather-section">
+                <div class="weather-header">
+                    <div>
+                        <h3>Prakiraan Cuaca Wilayah Anda (BMKG)</h3>
+                        <p class="location-tag">
+                            Wilayah: <strong id="weather-location">Memuat wilayah...</strong> • Zona: <span id="weather-timezone">WIB (Asia/Jakarta)</span>
+                        </p>
+                    </div>
+                    <div class="weather-actions">
+                        <span id="last-updated" class="last-updated">Memuat...</span>
+                        <button id="btn-refresh-weather" class="btn-refresh" title="Muat ulang data cuaca">
+                            <span class="refresh-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span> Segarkan
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading State -->
+                <div id="weather-loading" class="weather-loading">
+                    <div class="spinner"></div>
+                    <p>Mengambil data dari API BMKG</p>
+                </div>
+
+                <!-- Error State -->
+                <div id="weather-error" class="weather-error" style="display: none;">
+                    <div class="error-icon"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+                    <p id="error-message">Gagal mengambil data cuaca dari BMKG.</p>
+                    <button id="btn-retry-weather" class="btn-retry">Coba Lagi</button>
+                </div>
+
+                <!-- Weather Content (Shown when loaded) -->
+                <div id="weather-content" style="display: none;">
+                    
+                    <!-- Overview Stat Cards -->
+                    <div class="weather-stats-grid">
+                        <div class="stat-card stat-current">
+                            <div class="stat-icon" id="current-weather-icon-box"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Suhu Saat Ini</span>
+                                <span class="stat-value" id="current-temp">-</span>
+                                <span class="stat-sub" id="current-temp-time">Jam ini</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card stat-max">
+                            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Suhu Tertinggi</span>
+                                <span class="stat-value" id="max-temp">-</span>
+                                <span class="stat-sub" id="max-temp-sub">Puncak hari terpilih</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card stat-min">
+                            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"/><polyline points="17 18 23 18 23 12"/></svg></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Suhu Terendah</span>
+                                <span class="stat-value" id="min-temp">-</span>
+                                <span class="stat-sub" id="min-temp-sub">Minimum hari terpilih</span>
+                            </div>
+                        </div>
+
+                        <div class="stat-card stat-avg">
+                            <div class="stat-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+                            <div class="stat-content">
+                                <span class="stat-label">Rata-rata Kelembapan</span>
+                                <span class="stat-value" id="avg-humidity">-</span>
+                                <span class="stat-sub" id="avg-temp-sub">Kelembapan udara</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Date Selector Pills -->
+                    <div class="date-selector-wrapper">
+                        <span class="selector-label">Pilih Hari Prakiraan:</span>
+                        <div class="date-pills" id="date-pills">
+                            <!-- Injected dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Hourly Forecast Cards (Carousel / Grid) -->
+                    <div class="forecast-block">
+                        <div class="block-header">
+                            <div>
+                                <h4 id="selected-day-title">Prakiraan Cuaca Berkala</h4>
+                                <p class="block-subtitle">Geser ke kanan untuk melihat jam berikutnya</p>
+                            </div>
+                            <span class="badge-unit">Sumber: BMKG</span>
+                        </div>
+                        <div class="hourly-cards-container" id="hourly-cards-container">
+                            <!-- Injected by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Detailed Table Section (Langsung Tampil) -->
+                    <div class="table-section">
+                        <div class="table-toggle-bar">
+                            <div>
+                                <h4>Data Tabel Cuaca & Suhu</h4>
+                                <p class="table-subtitle">Daftar lengkap pembacaan prakiraan cuaca berkala</p>
+                            </div>
+                        </div>
+                        <div id="table-container" class="table-responsive">
+                            <table class="weather-table">
+                                <thead>
+                                    <tr>
+                                        <th>Waktu (WIB)</th>
+                                        <th>Kondisi Cuaca</th>
+                                        <th>Suhu (°C)</th>
+                                        <th>Kelembapan</th>
+                                        <th>Angin</th>
+                                        <th>Visual Bar</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="weather-table-body">
+                                    <!-- Injected by JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- Dashboard Footer -->
+            <footer class="dashboard-footer">
+                <p>Pemrograman Web &copy; 2026 • Prakiraan Cuaca BMKG Indonesia</p>
+            </footer>
+
+        </div>
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "pertemuan-3-auth-api",
+  "version": "1.0.0",
+  "description": "Auth System with JSON Server API",
+  "scripts": {
+    "start": "npx json-server data/db.json -p 3000 -s ."
+  },
+  "dependencies": {
+    "json-server": "^1.0.0-beta.15"
+  }
+}

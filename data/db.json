@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "nama": "User Demo",
+      "email": "user@example.com",
+      "password": "password123"
+    },
+    {
+      "nama": "Vicky Leo Cahyo Putro",
+      "email": "vickyputro312@gmail.com",
+      "password": "vickyleo",
+      "id": "KKMkqU2vTpk"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

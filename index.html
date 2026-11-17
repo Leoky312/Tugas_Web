@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather & Auth Portal - Pemrograman Web</title>
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="wrapper">
+        <section class="portal-card">
+
+            <div class="portal-badge">
+                Praktikum Pemrograman Web
+            </div>
+
+            <div class="portal-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><line x1="22" y1="10" x2="25" y2="10" opacity=".5"/><line x1="20" y1="5" x2="22" y2="3" opacity=".5"/><line x1="16" y1="3" x2="16" y2="0" opacity=".5"/></svg></div>
+
+            <h1 class="portal-title">Weather & Auth Portal</h1>
+            <p class="portal-desc">
+                Sistem autentikasi berbasis <strong>JSON-Server</strong> terintegrasi dengan prakiraan cuaca realtime <strong>API Resmi BMKG</strong>.
+            </p>
+
+            <div class="portal-features">
+                <div class="feature-item">
+                    <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+                    <div>
+                        <strong>Autentikasi Akun</strong>
+                        <p style="font-size: 11px; color: #64748b;">Sistem login, registrasi, dan sesi aktif</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41m11.32-11.32l1.41-1.41"/></svg></span>
+                    <div>
+                        <strong>Prakiraan Cuaca BMKG</strong>
+                        <p style="font-size: 11px; color: #64748b;">Data cuaca & suhu berkala langsung dari API BMKG</p>
+                    </div>
+                </div>
+
+                <div class="feature-item">
+                    <span class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="9"/><rect x="10" y="7" width="4" height="14"/><rect x="17" y="3" width="4" height="18"/></svg></span>
+                    <div>
+                        <strong>Visualisasi Modern</strong>
+                        <p style="font-size: 11px; color: #64748b;">Statistik suhu (Max, Min, Rata-rata), kartu, & tabel</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portal-actions">
+                <!-- Jika sudah login, tombol ini muncul via script -->
+                <div id="active-session-box" style="display: none;">
+                    <a href="dashboard.html" class="btn-active-session" id="btn-continue-dashboard">
+                        Lanjut ke Dashboard →
+                    </a>
+                </div>
+
+                <a href="login.html" class="btn-primary-link">Masuk ke Akun (Login)</a>
+                <a href="register.html" class="btn-outline-link">Daftar Akun Baru</a>
+            </div>
+
+            <footer class="portal-footer">
+                <p>Pertemuan 3 &copy; 2026 • REST API Client-Server</p>
+            </footer>
+
+        </section>
+    </main>
+
+    <script>
+        // Cek apakah ada sesi login yang tersimpan
+        document.addEventListener("DOMContentLoaded", () => {
+            try {
+                const currentUser = JSON.parse(sessionStorage.getItem("current_user"));
+                if (currentUser && currentUser.nama) {
+                    const sessionBox = document.getElementById("active-session-box");
+                    const continueBtn = document.getElementById("btn-continue-dashboard");
+                    if (sessionBox && continueBtn) {
+                        sessionBox.style.display = "block";
+                        continueBtn.textContent = `Lanjut ke Dashboard (${currentUser.nama}) →`;
+                    }
+                }
+            } catch (e) {
+                console.error(e);
+            }
+        });
+    </script>
+</body>
+
+</html>
