@@ -55,7 +55,22 @@ Setelah login berhasil, halaman dashboard menampilkan:
 
 ---
 
+## 📸 Tangkapan Layar (Screenshots)
+
+### 1. Halaman Login
+<p align="center">
+  <img src="screenshots/login.png" alt="Halaman Login" width="500" />
+</p>
+
+### 2. Dashboard Cuaca (Integrasi API BMKG)
+<p align="center">
+  <img src="screenshots/dashboard.jpg" alt="Dashboard Cuaca BMKG" width="100%" />
+</p>
+
+---
+
 ## 📁 Struktur File
+- `screenshots/` : Berisi tangkapan layar aplikasi untuk dokumentasi.
 - `data/db.json` : File database JSON utama yang dibaca & ditulis oleh `json-server`.
 - `js/script.js` : Menangani proses autentikasi via `fetch()` dan pengambilan serta rendering data cuaca dari Open-Meteo API.
 - `register.html` : Halaman form pendaftaran akun baru.
