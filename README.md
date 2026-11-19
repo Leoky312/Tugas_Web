@@ -57,12 +57,22 @@ Setelah login berhasil, halaman dashboard menampilkan:
 
 ## 📸 Tangkapan Layar (Screenshots)
 
-### 1. Halaman Login
+### 1. Portal Utama
+<p align="center">
+  <img src="screenshots/portal.png" alt="Portal Utama" width="500" />
+</p>
+
+### 2. Halaman Login
 <p align="center">
   <img src="screenshots/login.png" alt="Halaman Login" width="500" />
 </p>
 
-### 2. Dashboard Cuaca (Integrasi API BMKG)
+### 3. Halaman Registrasi (Daftar Akun)
+<p align="center">
+  <img src="screenshots/register.png" alt="Halaman Registrasi" width="500" />
+</p>
+
+### 4. Dashboard Cuaca (Integrasi API BMKG)
 <p align="center">
   <img src="screenshots/dashboard.jpg" alt="Dashboard Cuaca BMKG" width="100%" />
 </p>
