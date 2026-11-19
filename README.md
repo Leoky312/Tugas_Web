@@ -4,7 +4,7 @@ Proyek ini menggunakan **json-server** sebagai Fake/Mock REST API untuk autentik
 
 ---
 
-## 🚀 Cara Menjalankan Server
+## Cara Menjalankan Server
 
 Buka terminal pada folder proyek ini, lalu jalankan:
 
@@ -23,7 +23,7 @@ Akses halaman di browser:
 
 ---
 
-## 📡 Endpoint REST API yang Digunakan
+## Endpoint REST API yang Digunakan
 
 ### 1. Autentikasi Pengguna (Local Mock API)
 | Method | Endpoint | Fungsi | Keterangan |
@@ -39,15 +39,15 @@ Akses halaman di browser:
 
 ---
 
-## 🌤️ Fitur Dashboard Cuaca
+## Fitur Dashboard Cuaca
 
 Setelah login berhasil, halaman dashboard menampilkan:
 1. **Header Profil & Sesi Aktif**: Menampilkan nama pengguna, email, avatar inisial, status sesi, dan tombol Logout.
 2. **Kartu Ringkasan Suhu**:
-   - 🌡️ **Suhu Saat Ini**: Menampilkan pembacaan suhu pada jam saat ini.
-   - 🔥 **Suhu Tertinggi (Max)**: Puncak suhu tertinggi untuk hari yang dipilih.
-   - ❄️ **Suhu Terendah (Min)**: Nilai suhu terendah untuk hari yang dipilih.
-   - 📊 **Rata-rata Suhu**: Perhitungan rata-rata suhu harian.
+   - **Suhu Saat Ini**: Menampilkan pembacaan suhu pada jam saat ini.
+   - **Suhu Tertinggi (Max)**: Puncak suhu tertinggi untuk hari yang dipilih.
+   - **Suhu Terendah (Min)**: Nilai suhu terendah untuk hari yang dipilih.
+   - **Rata-rata Suhu**: Perhitungan rata-rata suhu harian.
 3. **Filter Tanggal (Date Pills)**: Pilihan tanggal interaktif (Hari Ini, Besok, dan 5 hari ke depan).
 4. **Slider Kartu Per Jam (Hourly Cards Carousel)**: Kartu visual 24 jam dengan ikon kondisi, pembacaan derajat Celsius, dan indikator grafik batang mini. Jam saat ini ditandai dengan badge khusus.
 5. **Tabel Data Detail (Toggle)**: Tabel interaktif yang menampilkan daftar lengkap jam, nilai suhu, label kondisi (Sangat Dingin, Dingin, Sejuk, Hangat, Panas), serta visual progress bar.
@@ -55,7 +55,7 @@ Setelah login berhasil, halaman dashboard menampilkan:
 
 ---
 
-## 📸 Tangkapan Layar (Screenshots)
+## Tangkapan Layar (Screenshots)
 
 ### 1. Portal Utama
 <p align="center">
@@ -79,7 +79,7 @@ Setelah login berhasil, halaman dashboard menampilkan:
 
 ---
 
-## 📁 Struktur File
+## Struktur File
 - `screenshots/` : Berisi tangkapan layar aplikasi untuk dokumentasi.
 - `data/db.json` : File database JSON utama yang dibaca & ditulis oleh `json-server`.
 - `js/script.js` : Menangani proses autentikasi via `fetch()` dan pengambilan serta rendering data cuaca dari Open-Meteo API.
@@ -90,6 +90,6 @@ Setelah login berhasil, halaman dashboard menampilkan:
 
 ---
 
-## 🧪 Akun Demo Bawaan
+## Akun Demo Bawaan
 - **Email**: `user@example.com`
 - **Password**: `password123`
